@@ -3,6 +3,13 @@ using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//if (!app.Environment.IsDevelopment()) {
+//app.UseExceptionHandler("/Error");
+//// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+//app.UseHsts();
+//}
+
+
 // add services to DI container
 {
     var services = builder.Services;
@@ -27,6 +34,9 @@ var app = builder.Build();
     app.UseMiddleware<BasicAuthMiddleware>();
 
     app.MapControllers();
+
+    // ADDED BY SAYED FOR DEBUGGING ONLY
+    app.UseExceptionHandler("/Error");
 }
 
-app.Run("http://localhost:4000");
+app.Run();
